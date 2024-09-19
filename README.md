@@ -1,5 +1,5 @@
 # Job tracker 
-Le but du projet est de créer un site qui permet de tracker nos candidatures. Nous pouvons nous créer un compte. 
+Le but du projet est de créer un site qui permet de tracker nos candidatures. Nous pouvons nous créer un compte. Le design est reponsive
 
 Si vous voulez vous connecter rapidement, voici un user que vous pouvez utiliser : 
 - lucie@google.com
