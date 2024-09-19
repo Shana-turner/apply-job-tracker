@@ -1,0 +1,100 @@
+<%- include('partials/header'); -%>
+
+<form id="formCreateJob">
+    <ul>
+        <li>
+            <h1>Create a new job</h1>
+        </li>
+        <li>
+            <label for="jobTitle">Job title</label>
+                <input type="text" id="jobTitle" name="jobTitle" required>
+        </li>
+        <li>
+            <label for="webSite">Website</label>
+                <input type="text" id="webSite" name="webSite" required>
+        </li>
+        <li>
+                <p id="legend">Employer’s contact</p>
+        </li>
+        <li>
+                <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+        </li>
+        <li>
+                    <label for="email">Email of contact</label>
+                    <input type="email" id="email" name="email" required>
+        </li>
+        <li>
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" required>
+        </li>
+        <li>
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" required>
+        </li>
+        <li>
+                    <div class="origin">
+                <label for="origin">Origin</label>
+                <select name="origin" id="origin">
+                    <option value="">Select an origin</option>
+                    <option value="Candidature spontanée">Candidature spontanée</option>
+                    <option value="Job offer">Job offer</option>
+                </select>
+            </div>
+        </li>
+        <li>
+            <div class="status">
+                <label for="status">Status</label>
+                <select name="status" id="status">
+                    <option value="">Select a status</option>
+                    <option value="Interested">Interested</option>
+                    <option value="CV sent">CV sent</option>
+                    <option value="Negative">Negative</option>
+                    <option value="Interview">Interview</option>
+                </select>
+            </div>
+        </li>
+        <li>
+            <label for="comments">Comment</label>
+                <textarea name="comments" id="comments" cols="30" rows="5"></textarea>
+        </li>
+        <li>
+                <button>Save</button>
+        </li>
+    </ul>
+</form>
+
+<script>
+    const form = document.querySelector('form');
+
+
+    form.addEventListener('submit', async(e) =>{
+        e.preventDefault();
+        //Get values
+        const jobTitle = form.jobTitle.value;
+        const webSite = form.webSite.value;
+        const name = form.name.value;
+        const email = form.email.value;
+        const phone = form.phone.value;
+        const address = form.address.value;
+        const origin = form.origin.value;
+        const status = form.status.value;
+        const comments = form.comments.value;
+
+        try {
+            const res = await fetch('/createJob', {
+                method : 'POST',
+                body : JSON.stringify({jobTitle, webSite, name, email, phone, address, origin, status, comments}),
+                headers : {'Content-Type' : 'application/json'}
+            })
+            const data = await res.json();
+            console.log(data);
+            if(data.job){
+                location.assign('/');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    });
+
+</script>

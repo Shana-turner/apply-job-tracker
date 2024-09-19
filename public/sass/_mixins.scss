@@ -1,0 +1,33 @@
+/* MEDIA QUERIES */
+
+@mixin ipad {
+  @media screen and (min-width:768px) {
+      @content;
+  }
+}
+@mixin ipadLandscape{
+  @media screen and (min-width:1024px) {
+      @content;
+  }
+}
+@mixin laptop {
+  @media screen and (min-width:1440px) {
+      @content;
+  }
+}
+@mixin pc {
+  @media screen and (min-width:1920px) {
+      @content;
+    }
+}
+
+
+@mixin pseudo($display: block, $position: absolute) {
+  content: "";
+  display: $display;
+  position: $position;
+}
+
+@mixin transition($time: 0.5s, $interpolation: ease) {
+  transition: $time $interpolation;
+}

@@ -1,0 +1,82 @@
+.containerSignup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background: linear-gradient(to right, #0542E2, #4095F5);
+    padding: 40px 20px;
+
+    @include ipadLandscape{
+        flex-direction: row;
+        height: 100vh;
+        justify-content: space-around;
+    }
+    .headerSignup{
+        text-align: center;
+        a{
+            color: white;
+            font-size: 36px;
+        }
+        img{
+            width: 300px;
+            filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.368));
+            
+            @include ipadLandscape{
+                width: 400px;
+            }
+            @include laptop{
+                width: 500px;
+            }
+        }
+    }
+    .formSignup{
+        h2{
+            text-align: center;
+            font-size: 24px;
+            padding-bottom: 30px;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            
+            input{
+                padding: 8px 10px;
+                width: 300px;
+                border: none;
+                border-radius: 10px;
+            }
+            #files{
+                display: flex;
+                flex-direction: column;
+            }
+            button{
+                border: none;
+                border-radius: 10px;
+                padding: 10px 10px;
+                width: 300px;
+                background-color: white;
+                color:#4095F5 ;
+                text-transform: uppercase;
+                font-weight: bold;
+                &:hover{
+                    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.353);
+                }
+            }
+            p{
+                font-weight: 300;
+                a{
+                    color: white;
+                    text-transform: uppercase;
+                    &:hover{
+                        border-bottom: 1px solid white;
+                    }
+                }
+            }
+            .error{
+                color: red;
+            }
+        }
+    }
+}

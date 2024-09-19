@@ -1,0 +1,64 @@
+<%- include('partials/header'); -%>
+
+<% if (user) { %>
+<div class="dashboard">
+    <div class="partie1">
+        <h1>Dashboard</h1>
+        <a id="createLink" href="/createJob">Create new job</a>
+        <div class="selection">
+            <label for="statusFilter">Filter by </label>
+            <select name="statusFilter" id="statusFilter">
+                <option value="">Select a status</option>
+                <option value="Interested" id="interested">Interested</option>
+                <option value="CV sent" id="cv">CV sent</option>
+                <option value="Negative" id="negative">Negative</option>
+                <option value="Interview" id="interview">Interview</option>
+            </select> 
+            <label for="order">Order by </label>
+            <select name="order" id="order">
+                <option value="">Select an order</option>
+                <option value="asc">Ascendant</option>
+                <option value="desc">Descendant</option>
+            </select>
+        </div>
+    </div>
+    <ul id="jobsList"></ul>
+</div>
+
+<% } else { %>
+
+<div class="noUser">
+    <h1>You're not connected</h1>
+    <img src="images/connected.svg" alt="not connected icon">
+</div>
+
+<% } %>
+
+<script>
+        const interested = document.getElementById('interested').value;
+        const cv = document.getElementById('cv').value;
+        const negative = document.getElementById('negative').value;
+        const interview = document.getElementById('interview').value;
+        fetch('/home', {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(data => {
+            const jobsList = document.getElementById('jobsList');
+            data.jobs.forEach(job => {
+                const listItem = document.createElement('li');
+                listItem.classList.add("jobDetail");
+                listItem.innerHTML = `<div class="theJob slide-in-left"><h2>${job.jobTitle}</h2><p>${job.webSite}</p><a href="/job/${job._id}" class="seeMore">See more</a></div>`;
+                jobsList.appendChild(listItem);
+                
+            });
+
+            
+        })
+        .catch(error => console.error('Error:', error));
+
+        
+
+        
+    </script>
+

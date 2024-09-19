@@ -1,0 +1,22 @@
+<%- include('partials/header'); -%>
+<h1 class="profilTitle">My profile</h1>
+<div class="profileContainer">
+        <div class="profileGrid imageProfil">
+            <img src="<%= user.profileImageUrl %>" alt="Profile Image">
+            <p class="username"><%= user.firstname %> <%= user.lastname %></p>
+        </div>
+        <div class="profileGrid infoProfil">
+            <p class="p">Email</p>
+            <p><%= user.email %></p>
+            <hr>
+            <p class="p">GitHub</p>
+            <p><a href="<%= user.gitHub %>"><%= user.gitHub %></a></p>
+            <hr>
+            <div>
+                <a href="<%= user.cvUrl %>" download="cv.pdf" target="_blank">
+                    <button id="cvButton">View CV</button>
+                </a>
+            </div>
+        </div>
+        
+</div>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Tracker</title>
+    <link rel="stylesheet" type="text/css" href="/sass/style.css">
+</head>
+<body>
+<div class="containerSignup">
+    <div class="headerSignup">
+        <h1><a href="/">Job Tracker</a></h1>
+        <img src="images/jobListing.svg" alt="pink stuff" class="signupImage"> 
+    </div>
+    
+    <div class="formSignup">
+        <h2>Sign up</h2>
+        <form action="/signup" method="POST" enctype="multipart/form-data">
+            <div class="firstnameS">
+                <input id="firstnameInput" type="text" name="firstname" required placeholder="Firstname">
+                <div class="firstname error"></div>
+            </div>
+            <div class="lastnameS">
+                <input id="lastnameInput" type="text" name="lastname" required placeholder="Lastname">
+                <div class="lastname error"></div>
+            </div>
+            <div class="emailS">
+                <input type="text" name="email" id="email" required placeholder="Email">
+                <div class="email error"></div>
+            </div>
+
+            <div class="gitHubS">
+                <input type="text" name="gitHub" id="gitHub" placeholder="Link GitHub">
+                <div class="gitHub error"></div>
+            </div>
+
+            <div class="passwordS">
+                <input type="password" name="password" required id="password" placeholder="Password">
+                <div class="password error"></div>
+            </div>
+
+            <div class="repeatPasswordS">
+                <input type="password" name="repeatPassword" required id="repeatPassword" placeholder="Repeat Password">
+                <div class="repeatPassword error"></div>
+            </div>
+
+            <div id="files">
+                <label for="profileImage" id="label1">Profile picture</label>
+                <input class="inputFiles" type="file" name="profileImage" id="profileImage" accept="image/*" required>
+                
+                <label for="cv">Upload CV</label>
+                <input class="inputFiles" type="file" name="cv" id="cv" accept="application/pdf" required>
+            </div>
+
+            <button id="buttonS">Register</button>
+            <p>Already registered ? <a id="already" href="/login">Login</a></p>
+        </form>
+    </div>
+</div>
+
+<script>
+    const form = document.querySelector('form');
+    const emailError = document.querySelector('.email.error')
+    const passwordError = document.querySelector('.password.error')
+    
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Reset values
+        emailError.textContent = '';
+        passwordError.textContent = '';
+
+        const formData = new FormData(form);
+
+
+        try{
+            const res = await fetch('/signup', {
+                method: 'POST',
+                body: formData,
+            })
+            const data = await res.json()
+            console.log(data)
+            if (data.errors) {
+                emailError.textContent = data.errors.email || '';
+                passwordError.textContent = data.errors.password || '';
+            }
+            if (data.user) {
+                location.assign('/')
+            }
+        }
+        catch (err) {
+            console.log(err)
+        }
+
+    })
+</script>
+
+</body>
+</html>

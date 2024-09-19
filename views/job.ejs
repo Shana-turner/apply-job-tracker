@@ -1,0 +1,95 @@
+<%- include('partials/header'); -%>
+
+
+
+<div id="jobDetails">
+
+    <h1><%=job.jobTitle%></h1>
+    <p><span>Web site:</span> <%=job.webSite%></p>
+    <p><span>Name of employer:</span> <%=job.name%></p>
+    <p><span>Email of employer:</span> <%=job.email%></p>
+    <p><span>Phone of employer:</span> 0<%=job.phone%></p>
+    <p><span>Adress of company:</span> <%=job.address%></p>
+    <p><span>Origin:</span> <%=job.origin%></p>
+    <p><span>Status:</span> <%=job.status%></p>
+    <p><span>Comments:</span> <%=job.comments%></p>
+    <div class="btn">
+        <button class="updatebtn">Update</button>
+        <button class="deletebtn">Delete</button>
+    </div>
+</div>
+
+<script>
+    const updateBtn = document.querySelector('.updatebtn');
+    const deleteBtn = document.querySelector('.deletebtn');
+
+    deleteBtn.addEventListener("click", async(e)=>{
+        e.preventDefault();
+        let id = window.location.href.split('/').at(-1);
+        try {
+            const res = await fetch('/job/'+ id,{
+                method : 'DELETE',
+                headers : {'Content-Type' : 'application/json'}
+            })
+            .then(response =>{
+                if (response.ok) {
+                        alert('Post supprimé avec succès');
+                        location.assign('/');
+                }else {
+                    return response.json().then(data => {
+                        throw new Error(data.error);
+                    });
+                }
+            })
+        } 
+        catch (error) {
+            console.error('Error:', error);
+            alert('Une erreur est survenue lors de la suppression du post');
+        }
+    });
+
+    updateBtn.addEventListener("click", ()=>{
+        const jobDetail = document.getElementById('jobDetails');
+        jobDetail.innerHTML = `<form id="formCreateJob"> <input type="hidden" id="jobId" value="<%=job._id%>"> <ul> <li> <h1>Update the job</h1> </li> <li> <label for="jobTitle">Job title</label> <input type="text" id="jobTitle" name="jobTitle" value="<%=job.jobTitle%>"> </li> <li> <label for="webSite">Website</label> <input type="text" id="webSite" name="webSite" value="<%=job.webSite%>"> </li> <li> <p id="legend">Employer’s contact</p> </li> <li> <label for="name">Name</label> <input type="text" id="name" name="name" value="<%=job.name%>"> </li> <li> <label for="email">Email of contact</label> <input type="email" id="email" name="email" value="<%=job.email%>"> </li> <li> <label for="phone">Phone</label> <input type="tel" id="phone" name="phone" value="0<%=job.phone%>"> </li> <li> <label for="address">Address</label> <input type="text" id="address" name="address" value="<%=job.address%>"> </li> <li> <div class="origin"> <label for="origin">Origin</label> <select name="origin" id="origin"> <option value="<%=job.origin%>">Select an origin</option> <option value="Candidature spontanée">Candidature spontanée</option> <option value="Job offer">Job offer</option> </select> </div> </li> <li> <div class="status"> <label for="status">Status</label> <select name="status" id="status"> <option value="<%=job.status%>">Select a status</option> <option value="Interested">Interested</option> <option value="CV sent">CV sent</option> <option value="Negative">Negative</option> <option value="Interview">Interview</option> </select> </div> </li> <li> <label for="comments">Comment</label> <textarea name="comments" id="comments" cols="30" rows="5"><%=job.comments%></textarea> </li> <li> <button class="update">Update</button> </li> </ul> </form>`;
+
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', async(e) =>{
+        e.preventDefault();
+        const jobTitle = form.jobTitle.value;
+        const webSite = form.webSite.value;
+        const name = form.name.value;
+        const email = form.email.value;
+        const phone = form.phone.value;
+        const address = form.address.value;
+        const origin = form.origin.value;
+        const status = form.status.value;
+        const comments = form.comments.value;
+        const jobId = document.getElementById('jobId').value;
+
+        try {
+            
+            const res = await fetch('/job/' + jobId, {
+                method : 'PUT',
+                body : JSON.stringify({jobTitle, webSite, name, email, phone, address, origin, status, comments}),
+                headers : {'Content-Type' : 'application/json'}
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.error) {
+                    console.error('Error:', data.error);
+                } else {
+                    location.assign('/job/' + jobId);
+                }
+            })
+            
+        } 
+        catch (error) {
+            console.log(error);
+        }
+
+    })
+    
+    })
+</script>
+

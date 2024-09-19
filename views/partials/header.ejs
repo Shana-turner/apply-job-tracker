@@ -1,0 +1,30 @@
+<!--Header pour tout sauf le login / signup-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Tracker</title>
+    <link rel="stylesheet" type="text/css" href="/sass/style.css">
+</head>
+<body>
+    <header>
+            <h1 id="logo2" class="jello-horizontal"><a href="/">Job Tracker</a></h1>
+            <div class="menu">
+                <ul>
+                    <% if (user) { %>
+                    
+                    <li><a href="/profil">My profile</a></li>
+                    <li class="liRight"><a href="/logout">Logout</a></li>
+                    
+                    <% if (user.profileImageUrl && user.profileImageUrl.trim() !== "") { %>
+                        <a href="/profil" class="profilImage"><img id="miniPicProfile" src="<%= user.profileImageUrl %>" alt="profilepic"></a>
+                        <% } %>
+                    <li id="username"><%= user.firstname %></li>
+                    <% } else { %>
+                    <li><a href="/login">Login</a></li>
+                    <li class="liRight"><a href="/signup">Signup</a></li>
+                    <% } %>
+                </ul>
+            </div>
+    </header>

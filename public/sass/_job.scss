@@ -1,0 +1,44 @@
+#jobDetails{
+    background: linear-gradient(to right, #0542E2, #4095F5);
+    border-radius: 10px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    margin: auto;
+    margin-top: 30px;
+    color: white;
+    gap: 20px;
+    @include ipadLandscape{
+        align-items: center;
+    }
+    h1{
+        text-align: center;
+    }
+    span{
+        font-weight: bold;
+        padding-right: 5px;
+    }
+    .btn{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        button{
+            background-color: white;
+            border-radius: 10px;
+            color: #4095F5;
+            text-transform: uppercase;
+            padding: 10px 10px;
+            border: none;
+            font-weight: bold;
+            width: 50vw;
+            @include ipadLandscape{
+                width: 30vw;
+            }
+            &:hover{
+                box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.26);
+            }
+        }
+    }
+    
+}

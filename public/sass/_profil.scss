@@ -1,0 +1,100 @@
+.profilTitle{
+    text-align: center;
+    padding-top: 30px;
+    color: #4095F5;
+    padding-bottom: 30px;
+    @include ipadLandscape{
+        padding-top: 40px;
+        padding-bottom: 50px;
+    }
+}
+.profileContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+
+    @include ipadLandscape{
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .profileGrid{
+        background: linear-gradient(to right, #0542E2, #4095F5);
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.305);
+        padding: 20px 20px;
+        width: 300px;
+        color: white;
+        text-align: center;
+        @include ipad{
+            width: 400px;
+        }
+        @include ipadLandscape{
+            height: 400px;
+        }
+        @include laptop{
+            width: 500px;
+            height: 500px;
+        }
+
+        .username{
+            text-transform: capitalize;
+            font-size: 18px;
+            padding-top: 20px;
+        }
+        img{
+            width: 180px;
+            border-radius: 10px;
+            &:hover{
+                filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.331));
+            }
+            @include ipadLandscape{
+                width: 250px;
+            }
+        }
+    }
+    .imageProfil{
+        @include ipadLandscape{
+            padding-top: 60px;
+        }
+        @include laptop{
+            padding-top: 100px;
+        }
+    }
+    .infoProfil{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        @include ipadLandscape{
+            justify-content: center;
+            gap: 20px;
+        }
+        @include laptop{
+            gap: 30px;
+        }
+        .p{
+            font-weight: bold;
+        }
+        a{
+            color: white;
+            &:hover{
+                font-weight: bold;
+            }
+        }
+        #cvButton{
+            background-color: white;
+                border-radius: 10px;
+                border: none;
+                color: #4095F5;
+                text-transform: uppercase;
+                padding: 7px 13px;
+                font-weight: bold;
+                margin-top: 10px;
+                &:hover{
+                    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.26);
+                }
+        }
+    }
+}

@@ -1,0 +1,109 @@
+.noUser{
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 60px;
+    img{
+        width: 300px;
+        filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.386));
+        @include ipadLandscape{
+            width: 400px;
+        }
+        @include laptop{
+            width: 500px;
+        }
+    }
+}
+.dashboard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .partie1{
+        background: linear-gradient(to right, #0542E2, #4095F5);
+        margin-top: 30px;
+        border-radius: 10px;
+        width: 420px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        @include ipadLandscape{
+            width: 80vw;
+        }
+        h1{
+            color: white;
+            padding-bottom: 20px;
+        }
+        #createLink{
+            color: white;
+            text-transform: uppercase;
+            padding-bottom: 15px;
+            &:hover{
+                font-weight: bold;
+            }
+            @include ipadLandscape{
+                position: absolute;
+                top: 15px;
+                right: 30px;
+                background-color: white;
+                color:#4095F5;
+                padding: 10px 10px;
+                border-radius: 10px;
+                &:hover{
+                    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.252);
+                }
+            }
+        }
+        .selection{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            label{
+                color: white;
+            }
+            select{
+                border-radius: 10px;
+                padding: 5px 5px;
+            }
+
+        }
+        
+    }
+    ul{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 30px;
+        @include ipadLandscape{
+            flex-direction: row;
+            max-width: 80vw;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        li{
+            background: linear-gradient(to right, #0542E2, #4095F5);
+            width: 420px;
+            border-radius: 10px;
+            padding: 20px;
+            color: white;
+            @include ipadLandscape{
+                width: 38vw;
+            }
+            .theJob{
+                h2{
+                    padding-bottom: 15px;
+                }
+                p{
+                    padding-bottom: 15px;
+                }
+                .seeMore{
+                    color: white;
+                    &:hover{
+                        font-weight: bold;
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
